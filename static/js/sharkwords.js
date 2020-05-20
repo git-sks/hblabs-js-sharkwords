@@ -52,7 +52,9 @@ const isLetterInWord = (letter) => {
 // Called when `letter` is in word. Update contents of divs with `letter`.
 //
 const handleCorrectGuess = (letter) => {
-  // Replace this with your code
+  const letterEl = $(`div.${letter}`);
+
+  letterEl.html(`${letter}`);
 };
 
 
@@ -62,14 +64,26 @@ const handleCorrectGuess = (letter) => {
 // message. Otherwise, increment `numWrong` and update the shark image.
 //
 const handleWrongGuess = () => {
-  // Replace this with your code
+  // Increment number of wrong guesses
+  numWrong += 1;
+  $('img').attr("src", `/static/images/guess${numWrong}.png`);
+
+  if (numWrong === 5) {
+    $('button').attr("disabled", "true");
+    $('a#play-again').show();
+  }
 };
 
 
 // Reset game state. Called before restarting the game.
 //
 const resetGame = () => {
-  // Replace this with your code
+  numWrong = 0;
+  $('img').attr("src", "/static/images/guess0.png");
+  $('a#play-again').hide();
+
+  $('section#word-container').empty();
+  $('section#letter-buttons').empty();
 };
 
 
